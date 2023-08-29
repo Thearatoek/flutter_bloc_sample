@@ -1,36 +1,56 @@
-class UserDetails {
-  String? name;
-  int? rating;
-  int? played;
-  int? won;
-  int? winningPercentage;
-  String? image;
+class ProductModel {
+  int? id;
+  String? title;
+  String? description;
+  int? price;
+  double? discountPercentage;
+  double? rating;
+  int? stock;
+  String? brand;
+  String? category;
+  String? thumbnail;
+  List<String>? images;
 
-  UserDetails(
-      {this.name,
-        this.rating,
-        this.played,
-        this.won,
-        this.winningPercentage,
-        this.image});
+  ProductModel(
+      {this.id,
+      this.title,
+      this.description,
+      this.price,
+      this.discountPercentage,
+      this.rating,
+      this.stock,
+      this.brand,
+      this.category,
+      this.thumbnail,
+      this.images});
 
-  UserDetails.fromJson(Map<String, dynamic> json) {
-    name = json['name'];
+  ProductModel.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    title = json['title'];
+    description = json['description'];
+    price = json['price'];
+    discountPercentage = json['discountPercentage'];
     rating = json['rating'];
-    played = json['played'];
-    won = json['won'];
-    winningPercentage = json['winning_percentage'];
-    image = json['image'];
+    stock = json['stock'];
+    brand = json['brand'];
+    category = json['category'];
+    thumbnail = json['thumbnail'];
+    images = json['images'].cast<String>();
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
+    data['id'] = this.id;
+    data['title'] = this.title;
+    data['description'] = this.description;
+    data['price'] = this.price;
+    data['discountPercentage'] = this.discountPercentage;
     data['rating'] = this.rating;
-    data['played'] = this.played;
-    data['won'] = this.won;
-    data['winning_percentage'] = this.winningPercentage;
-    data['image'] = this.image;
+    data['stock'] = this.stock;
+    data['brand'] = this.brand;
+    data['category'] = this.category;
+    data['thumbnail'] = this.thumbnail;
+    data['images'] = this.images;
     return data;
   }
 }
