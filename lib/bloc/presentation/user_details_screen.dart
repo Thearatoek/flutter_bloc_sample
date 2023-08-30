@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_sample/bloc/data/repository/user_details_repository.dart';
-import 'package:flutter_bloc_sample/bloc/domain/user_details_bloc.dart';
+import 'package:flutter_bloc_sample/bloc/domain/bloc/bloc/product_bloc.dart';
+import 'package:flutter_bloc_sample/bloc/presentation/widgets/splash_screen.dart';
 import 'package:flutter_bloc_sample/bloc/presentation/widgets/user_details_widget.dart';
 
 class UserDetailsScreen extends StatefulWidget {
@@ -10,35 +10,30 @@ class UserDetailsScreen extends StatefulWidget {
 }
 
 class _UserDetailsScreenState extends State<UserDetailsScreen> {
-  late final UserDetailsRepository _userDetailsRepository;
-  late final UserDetailsBloc _userDetailsBloc;
-
+  final productblock = ProductBloc();
   @override
   void initState() {
-    _userDetailsRepository = UserDetailsRepository();
-    _userDetailsBloc =
-        UserDetailsBloc(userDetailsRepository: _userDetailsRepository);
-    _userDetailsBloc.add(UserDetailsInfo());
+    productblock.add(AllProduProductEvent());
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('My App'),
-      ),
       body: Center(
         child: BlocBuilder(
-            bloc: _userDetailsBloc,
-            builder: (BuildContext context, UserDetailsState state) {
-              if (state is UserDetailsLoading) {
+            bloc: productblock,
+            builder: (BuildContext context, ProductState state) {
+              if (state is SplashScreenState) {
+                return SplashScreen();
+              }
+              if (state is LoadinState) {
                 return CircularProgressIndicator();
               }
-              if (state is UserDetailsLoaded) {
-                return UserDetailsWidget(userDetails: state.userDetails);
+              if (state is ProductDetailState) {
+                return UserDetailsWidget(productlist: state.productDetail);
               }
-              return Text('Unable to fetch the user details!!!');
+              return Text('');
             }),
       ),
     );

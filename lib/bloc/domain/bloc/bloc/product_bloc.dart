@@ -30,25 +30,22 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
     } catch (e) {}
   }
 
-  void _loadingfetchdata(
-      ProductDetailEvent event, Emitter<ProductDetailsState> emit) {
+  void _loadingfetchdata(ProductEvent event, Emitter<ProductState> emit) {
     emit(LoadinState());
   }
 
-  void _onAddingProduct(
-      ProductAddingEvent event, Emitter<ProductDetailsState> emit) {
+  void _onAddingProduct(ProductAddingEvent event, Emitter<ProductState> emit) {
     final List<ProductModel> listingn = [];
     emit(ProductAddingState(listproductmodel: listingn));
   }
 
   void _onIncreaseItem(
-      ProductIncreaseItemEvent event, Emitter<ProductDetailsState> emit) {
+      ProductIncreaseItemEvent event, Emitter<ProductState> emit) {
     final int index = 0;
     emit(ProductIncreaseItemState(index));
   }
 
-  void _onSplashScreen(
-      SplashScreenEvent event, Emitter<ProductDetailsState> emit) {
+  void _onSplashScreen(SplashScreenEvent event, Emitter<ProductState> emit) {
     emit(SplashScreenState());
   }
 }
