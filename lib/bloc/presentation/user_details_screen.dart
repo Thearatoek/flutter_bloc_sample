@@ -27,10 +27,9 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
               if (state is SplashScreenState) {
                 return SplashScreen();
               }
-              if (state is LoadinState) {
-                return CircularProgressIndicator();
-              }
+
               if (state is ProductDetailState) {
+                debugPrint("hello");
                 return UserDetailsWidget(productlist: state.productDetail);
               }
               return Text('');
